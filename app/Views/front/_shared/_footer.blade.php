@@ -1,7 +1,24 @@
 <div class="container">
     <div class="row">
-        <div class="text-center col-lg-12">
-            <p>LaraWebEd &copy; 2015 - 2016. All rights reserved.</p>
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <ul class="list-inline text-center">
+                <?php
+                $list = ['facebook', 'twitter', 'youtube', 'instagram', 'pinterest', 'github'];
+                ?>
+                @if(isset($CMSSettings) && $CMSSettings) @foreach($list as $key => $row)
+                    @if(_getSettings($CMSSettings, $row))
+                        <li>
+                            <a href="{{ $CMSSettings[$row] or '' }}" title="{{ $row }}">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-{{ $row }} fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach @endif
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; LaraWebEd 2016</p>
         </div>
     </div>
 </div>

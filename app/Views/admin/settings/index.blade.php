@@ -209,6 +209,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3">Github</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" value="{{ $settings['github'] or '' }}" name="github"/>
+                                <span class="help-block">Github page.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3">Construction mode</label>
                             <div class="col-md-7">
                                 <div class="md-checkbox">

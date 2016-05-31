@@ -65,6 +65,24 @@ class PageController extends BaseFrontController
     {
         $this->_setBodyClass($this->bodyClass.' page-homepage');
 
+        $this->dis['latestPosts'] = Models\Post::getWithContent([
+            'post_contents.language_id' => [
+                'compare' => '=',
+                'value' => $this->currentLanguageId
+            ],
+            'post_contents.status' => [
+                'compare' => '=',
+                'value' => 1
+            ],
+            'posts.status' => [
+                'compare' => '=',
+                'value' => 1
+            ],
+        ], [
+            'post_contents.*',
+            'posts.global_title'
+        ], ['posts.created_at' => 'DESC'], true, 10);
+
         return $this->_viewFront('page-templates.homepage', $this->dis);
     }
 

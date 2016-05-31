@@ -52,6 +52,23 @@ class CategoryController extends BaseFrontController
     private function _defaultItem(Category $object)
     {
         $this->_setBodyClass($this->bodyClass.' category-default');
+
+        /*Get related posts*/
+        $this->dis['relatedPosts'] = Post::getByCategory($object->category_id, $this->currentLanguageId, [
+            'posts.status' => [
+                'compare' => '=',
+                'value' => 1
+            ],
+            'post_contents.status' => [
+                'compare' => '=',
+                'value' => 1
+            ],
+        ], [
+            'posts.created_at' => 'DESC'
+        ], 10, [
+            'post_contents.*', 'posts.status as global_status'
+        ]);
+        
         return $this->_viewFront('category-templates.default', $this->dis);
     }
 

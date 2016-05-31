@@ -6,8 +6,8 @@ $paginator->appends($queryStringArray);
 ?>
 
 @if ($paginator->lastPage() > 1)
-<div class="clearfix pager-wrapper">
-    <ul class="pagination">
+<div class="clearfix pager-wrapper pull-right">
+    <ul class="pagination pager">
         <li class="{{ ($paginator->currentPage() == 1) ? ' disabled' : '' }} go-first">
             <a href="{{ $paginator->url(1) }}" class="arrow">&laquo;</a>
         </li>
@@ -39,6 +39,6 @@ $paginator->appends($queryStringArray);
             <a href="{{ $paginator->url($paginator->lastPage()) }}" class="arrow">&raquo;</a>
         </li>
     </ul>
-    <span class="pull-right page-label">{{ trans('cms.page') }} {{ $paginator->currentPage().'/'.$paginator->lastPage() }}</span>
+    <span class="pull-right page-label hidden">{{ trans('cms.page') }} {{ $paginator->currentPage().'/'.$paginator->lastPage() }}</span>
 </div>
 @endif
