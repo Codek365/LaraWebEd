@@ -1,10 +1,9 @@
 <?php
-require_once('_url.php');
-require_once('_custom-fields.php');
-require_once('_products.php');
-require_once('_date-time.php');
-require_once('_settings.php');
-
+require_once '_url.php';
+require_once '_custom-fields.php';
+require_once '_products.php';
+require_once '_date-time.php';
+require_once '_settings.php';
 /**
  * Get template for Page, Post, Category, ProductCategory
  * @return array
@@ -25,14 +24,14 @@ function _getPageTemplate($type = 'Page')
     }
     return $arrTemplate;
 }
-
 function _validateGoogleCaptcha($secret, $response = null)
 {
-    if (!$response) return false;
+    if (!$response) {
+        return false;
+    }
     $result = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $response));
     return $result->success;
 }
-
 function _sendEmail($view, $subject, $data, $to = [], $cc = [], $bcc = [])
 {
     return \Mail::send($view, $data, function ($message) use ($subject, $to, $cc, $bcc) {
@@ -47,7 +46,6 @@ function _sendEmail($view, $subject, $data, $to = [], $cc = [], $bcc = [])
         }
     });
 }
-
 function _stripTags($data, $allowTags = '<p><a><br><br/><b><strong>')
 {
     if (!is_array($data)) {
