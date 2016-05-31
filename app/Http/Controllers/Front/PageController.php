@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Front;
 
+use App\Models;
 use App\Models\Page;
 use App\Models\PageMeta;
 use Illuminate\Http\Request;
